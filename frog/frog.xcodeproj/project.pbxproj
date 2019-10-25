@@ -64,6 +64,8 @@
 		507AA6832361E3EF009234CB /* Frog */ = {
 			isa = PBXGroup;
 			children = (
+				507AA69D2361E46F009234CB /* FrogView.h */,
+				507AA69E2361E46F009234CB /* FrogView.m */,
 				507AA6842361E3EF009234CB /* AppDelegate.h */,
 				507AA6852361E3EF009234CB /* AppDelegate.m */,
 				507AA6872361E3EF009234CB /* SceneDelegate.h */,
@@ -75,8 +77,6 @@
 				507AA6922361E3F0009234CB /* LaunchScreen.storyboard */,
 				507AA6952361E3F0009234CB /* Info.plist */,
 				507AA6962361E3F0009234CB /* main.m */,
-				507AA69D2361E46F009234CB /* FrogView.h */,
-				507AA69E2361E46F009234CB /* FrogView.m */,
 			);
 			path = Frog;
 			sourceTree = "<group>";

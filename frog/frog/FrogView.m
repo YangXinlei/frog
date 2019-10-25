@@ -22,9 +22,34 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        CGPoint center = CGPointMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2);
+        CGFloat width = frame.size.width, height = frame.size.height;
+        CGPoint center = CGPointMake(width / 2, height / 2);
+        CGRect bounds = CGRectMake(0, 0, width, height);
+        
         _path = [UIBezierPath new];
-        [_path addArcWithCenter:center radius:CGRectGetWidth(frame) / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        /// body
+        CGRect bodyRect = CGRectInset(bounds, width / 4, height / 4);
+        [_path appendPath:[UIBezierPath bezierPathWithOvalInRect:bodyRect]];
+        
+        /// left arm
+        CGPoint leftArmJoint0Point = CGPointMake(center.x, center.y / 2 + center.y / 4);
+        CGPoint leftArmJoint1Point = CGPointMake(0 + width / 8,center.y / 2 + center.y / 4);
+        CGPoint leftArmJoint2Point = CGPointMake(leftArmJoint1Point.x - width / 16, leftArmJoint1Point.y - height / 16);
+        [_path moveToPoint:leftArmJoint0Point];
+        [_path addLineToPoint:leftArmJoint1Point];
+        [_path addLineToPoint:leftArmJoint2Point];
+        
+        CGPoint leftHandFinger0Point = CGPointMake(leftArmJoint2Point.x - width / 16, leftArmJoint2Point.y);
+        CGPoint leftHandFinger1Point = CGPointMake(leftArmJoint2Point.x - width / 16, leftArmJoint2Point.y - height / 16);
+        CGPoint leftHandFinger2Point = CGPointMake(leftArmJoint2Point.x, leftArmJoint2Point.y - height / 16);
+        [_path addLineToPoint:leftHandFinger0Point];
+        [_path moveToPoint:leftArmJoint2Point];
+        [_path addLineToPoint:leftHandFinger1Point];
+        [_path moveToPoint:leftArmJoint2Point];
+        [_path addLineToPoint:leftHandFinger2Point];
+        [_path moveToPoint:leftArmJoint2Point];
+        
+        
         CAShapeLayer *mainLayer = (CAShapeLayer *)self.layer;
         mainLayer.strokeColor = UIColor.greenColor.CGColor;
         mainLayer.lineWidth = 2;
