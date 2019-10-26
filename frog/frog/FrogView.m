@@ -7,6 +7,7 @@
 //
 
 #import "FrogView.h"
+#import "Bone.h"
 
 @interface FrogView ()
 
@@ -54,6 +55,15 @@
         mainLayer.strokeColor = UIColor.greenColor.CGColor;
         mainLayer.lineWidth = 2;
         mainLayer.path = _path.CGPath;
+        
+        Bone *rightBone0 = [[Bone alloc] initWithLength:50];
+        Bone *rightBone1 = [[Bone alloc] initWithLength:30];
+        Bone *rightBone2 = [[Bone alloc] initWithLength:20];
+        
+        [self.layer addSublayer:rightBone0.layer];
+        [rightBone1 attatchToBone:rightBone0 withMinJointAngle:-M_PI_4 maxJointAngle:M_PI_2];
+        [rightBone2 attatchToBone:rightBone1 withMinJointAngle:-M_PI_4 maxJointAngle:M_PI_4];
+        
     }
     return self;
 }

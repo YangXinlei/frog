@@ -15,6 +15,7 @@
 		507AA6942361E3F0009234CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507AA6922361E3F0009234CB /* LaunchScreen.storyboard */; };
 		507AA6972361E3F0009234CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 507AA6962361E3F0009234CB /* main.m */; };
 		507AA69F2361E46F009234CB /* FrogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 507AA69E2361E46F009234CB /* FrogView.m */; };
+		507AAB6E236401A0009234CB /* Bone.m in Sources */ = {isa = PBXBuildFile; fileRef = 507AAB6D236401A0009234CB /* Bone.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		507AA6962361E3F0009234CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		507AA69D2361E46F009234CB /* FrogView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrogView.h; sourceTree = "<group>"; };
 		507AA69E2361E46F009234CB /* FrogView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrogView.m; sourceTree = "<group>"; };
+		507AAB6C236401A0009234CB /* Bone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bone.h; sourceTree = "<group>"; };
+		507AAB6D236401A0009234CB /* Bone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bone.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 				507AA6922361E3F0009234CB /* LaunchScreen.storyboard */,
 				507AA6952361E3F0009234CB /* Info.plist */,
 				507AA6962361E3F0009234CB /* main.m */,
+				507AAB6C236401A0009234CB /* Bone.h */,
+				507AAB6D236401A0009234CB /* Bone.m */,
 			);
 			path = Frog;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				507AA68C2361E3EF009234CB /* ViewController.m in Sources */,
 				507AA6862361E3EF009234CB /* AppDelegate.m in Sources */,
 				507AA6972361E3F0009234CB /* main.m in Sources */,
+				507AAB6E236401A0009234CB /* Bone.m in Sources */,
 				507AA69F2361E46F009234CB /* FrogView.m in Sources */,
 				507AA6892361E3EF009234CB /* SceneDelegate.m in Sources */,
 			);
