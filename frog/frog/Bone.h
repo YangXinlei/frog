@@ -12,12 +12,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Bone : NSObject
-@property (nonatomic, readonly) CAShapeLayer *layer;
+@property (nonatomic, readonly) CALayer *layer;
 @property (nonatomic, readonly) CGFloat length;
 @property (nonatomic, readonly) NSArray<Bone *> *subBones;
 
 - (instancetype)initWithLength:(CGFloat)length;
 - (void)attatchToBone:(Bone *)bone withMinJointAngle:(CGFloat)minAngle maxJointAngle:(CGFloat)maxAngle;
+
+- (void)animateToFinalPostion;
 @end
 
 NS_ASSUME_NONNULL_END

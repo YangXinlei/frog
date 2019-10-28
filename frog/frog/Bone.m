@@ -12,42 +12,50 @@
 
 @interface Bone ()
 
-@property (nonatomic) UIBezierPath *path;
+//@property (nonatomic) UIBezierPath *path;
 @property (nonatomic) NSMutableArray<Bone *> *subBonesImpl;
 @property (nonatomic) Bone *superBone;
 
 @property (nonatomic) CGPoint endSideJoint;
 @property (nonatomic) CGPoint frontSideJoint;
 
+@property (nonatomic) CGFloat minAngle;
+@property (nonatomic) CGFloat maxAngle;
+
 @end
 
 @implementation Bone
 
+static CGFloat const kBoneWidth = 2;
 - (instancetype)initWithLength:(CGFloat)length {
     if (self = [super init]) {
         _length = length;
-        _layer = [CAShapeLayer new];
+        _layer = [CALayer new];
+        _layer.bounds = CGRectMake(0.0, 0.0, kBoneWidth, length);
+        _layer.backgroundColor = UIColor.redColor.CGColor;
 //        _layer.masksToBounds = NO;
         _layer.anchorPoint = CGPointMake(0.5, 0.0);
-        _layer.lineWidth = 2.0;
-        _layer.strokeColor = UIColor.redColor.CGColor;
-        
-        _path = [UIBezierPath bezierPath];
-        [_path moveToPoint:CGPointZero];
-        [_path addLineToPoint:CGPointMake(0.0, length)];
-        _layer.path = _path.CGPath;
-//        _layer.frame = CGRectMake(0, 0, 2, length);
         _subBonesImpl = [NSMutableArray array];
     }
     return self;
 }
 
 - (void)attatchToBone:(Bone *)bone withMinJointAngle:(CGFloat)minAngle maxJointAngle:(CGFloat)maxAngle {
+    self.minAngle = minAngle;
+    self.maxAngle = maxAngle;
+    
     [bone.subBonesImpl addObject:self];
     self.superBone = bone;
     [bone.layer addSublayer:self.layer];
     self.layer.position = CGPointMake(bone.layer.bounds.size.width / 2.0, bone.layer.bounds.size.height);
     self.layer.transform = CATransform3DMakeRotation(minAngle, 0, 0, 1);
+}
+
+- (void)animateToFinalPostion {
+    self.layer.transform = CATransform3DMakeRotation(self.maxAngle, 0, 0, 1);
+    [self.subBonesImpl enumerateObjectsUsingBlock:^(Bone * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj animateToFinalPostion];
+    }];
 }
 
 - (NSArray<Bone *> *)subBones {
