@@ -28,11 +28,15 @@
 
 static CGFloat const kBoneWidth = 2;
 - (instancetype)initWithLength:(CGFloat)length {
+    return [self initWithLength:length color:UIColor.clearColor];
+}
+
+- (instancetype)initWithLength:(CGFloat)length color:(UIColor *)color {
     if (self = [super init]) {
         _length = length;
         _layer = [CALayer new];
         _layer.bounds = CGRectMake(0.0, 0.0, kBoneWidth, length);
-        _layer.backgroundColor = UIColor.redColor.CGColor;
+        _layer.backgroundColor = color.CGColor;
 //        _layer.masksToBounds = NO;
         _layer.anchorPoint = CGPointMake(0.5, 0.0);
         _subBonesImpl = [NSMutableArray array];
@@ -55,6 +59,13 @@ static CGFloat const kBoneWidth = 2;
     self.layer.transform = CATransform3DMakeRotation(self.maxAngle, 0, 0, 1);
     [self.subBonesImpl enumerateObjectsUsingBlock:^(Bone * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj animateToFinalPostion];
+    }];
+}
+
+- (void)animateToKeyFrame:(NSArray *)keyFrameArray {
+    self.layer.transform = CATransform3DMakeRotation(self.minAngle + (self.maxAngle - self.minAngle) * [(NSNumber *)keyFrameArray.firstObject doubleValue], 0, 0, 1);
+    [self.subBonesImpl enumerateObjectsUsingBlock:^(Bone * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj animateToKeyFrame:(NSArray *)keyFrameArray.lastObject];
     }];
 }
 
